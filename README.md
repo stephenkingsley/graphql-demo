@@ -44,7 +44,7 @@ graphql demo
 
 ### 几个请求实例
 
- 1.http://localhost:5000/graphql?query={human(id:("1001")){id,name}}
+ 1.http://localhost:5000/graphql?query={human(id:"1001"){id,name}}
 
  ```javascript
 
