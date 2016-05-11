@@ -2,21 +2,36 @@
  * Copyright (c) 2016/5/10, Stephen.Kingsley
  * This is a demo for graphql
 */
-var graphql = require('graphql');
-var GraphQLEnumType = graphql.GraphQLEnumType;
-var GraphQLInterfaceType = graphql.GraphQLInterfaceType;
-var GraphQLObjectType = graphql.GraphQLObjectType;
-var GraphQLList = graphql.GraphQLList;
-var GraphQLNonNull = graphql.GraphQLNonNull;
-var GraphQLSchema = graphql.GraphQLSchema;
-var GraphQLString = graphql.GraphQLString;
+const graphql = require('graphql');
 
-var graphqlHTTP = require('express-graphql');
-var express = require('express');
+// better
+const GraphQLEnumType = graphql.GraphQLEnumType;
+const GraphQLInterfaceType = graphql.GraphQLInterfaceType;
+const GraphQLObjectType = graphql.GraphQLObjectType;
+const GraphQLList = graphql.GraphQLList;
+const GraphQLNonNull = graphql.GraphQLNonNull;
+const GraphQLSchema = graphql.GraphQLSchema;
+const GraphQLString = graphql.GraphQLString;
 
-var fakeData = require('./fakeData');
-var getHuman = fakeData.getHuman;
-var getHobby = fakeData.getHobby;
+// best node.js 5.1.1 not supported yet
+/**
+const { GraphQLEnumType, 
+  GraphQLInterfaceType, 
+  GraphQLObjectType, 
+  GraphQLList, 
+  GraphQLNonNull, 
+  GraphQLSchema, 
+  GraphQLString 
+} = graphql;
+**/
+
+const graphqlHTTP = require('express-graphql');
+const express = require('express');
+
+const fakeData = require('./fakeData');
+
+const getHuman = fakeData.getHuman;
+const getHobby = fakeData.getHobby;
 
 /**
  * Human example is like that:
@@ -157,7 +172,7 @@ const schema = new GraphQLSchema({
 });
 
 express()
-  .use('/graphql', graphqlHTTP({ schema: schema, pretty: true }))
+  .use('/graphql', graphqlHTTP({ schema, pretty: true }))
   .listen(5000);
 
 console.log('GraphQL server running on http://localhost:5000/graphql');
